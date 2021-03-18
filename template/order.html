@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% load static %} {% block content %}
 <div class="container">
   <div class="row">
-    <form class="col s6 offset-s3" action="" method="POST">
+    <form class="col s6 offset-s3" id="order" action="" method="POST">
       {% csrf_token %}
       <center>
         <!-- <h4>Order Id : #{{n}}</h4> -->
@@ -94,6 +94,25 @@
     </form>
   </div>
 </div>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+  document.getElementById("order").onsubmit = show;
+  function show(e){
+    e.preventDefault();
+    swal({
+      title: "Are you sure?",
+      text: "Once Ordered, you will not be able to cancle this order",
+      icon: "warning",
+      buttons: ["Cancle" , "Order"],
+      dangerMode: true,
+    })
+    .then((confirm) => {  
+      if (confirm) {
+        document.getElementById("order").submit(); 
+      }
+    });
+  }
+</script>
 
 <!-- <div id="index-banner" class="parallax-container">
     <div class="section no-pad-bot">

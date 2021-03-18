@@ -540,14 +540,18 @@ Remove or comment-out the code block below to see how the browser will fall-back
             <h1 class="profile-user-name">
               {{user.first_name}} {{user.last_name}}
             </h1>
-
+            <br>
             <!-- <button class="btn profile-edit-btn"> -->
-            <form method="GET" action="order/{{user.id}}">
-              <input type="Submit" value="Order" class="btn profile-edit-btn"/>
-            </form>
+            <button class="btn profile-edit-btn">
+              <a href="order/{{user.id}}"> Order</a>
+            </button>
+            
+            <!-- <button class="btn profile-edit-btn">
+              <a href="reviews/{{user.id}}"> Reviews  </a>
+            </button> -->
             <!-- <a href="order/{{user.id}}" class="btn profile-edit-btn"> order</a> -->
             <!-- </button> -->
-
+            
             <button
               class="btn profile-settings-btn"
               aria-label="profile settings"
@@ -580,7 +584,7 @@ Remove or comment-out the code block below to see how the browser will fall-back
       {% for u in u %}
       <div class="container">
         <div class="gallery">
-          <div class="gallery-item" tabindex="0">
+          <div class="gallery-item" tabindex="0" onclick="showdesc('{{u.description}}')">
             <img
               src="{{u.img.url}}"
               class="gallery-image"
@@ -588,9 +592,9 @@ Remove or comment-out the code block below to see how the browser will fall-back
             />
             <div class="gallery-item-info">
               <ul>
-                <li class="gallery-item-likes">
-                  <span class="visually-hidden">Likes:</span
-                  ><i class="fas fa-heart" aria-hidden="true"></i> {{u.description}}
+                <li class="gallery-item-likes" id='description'>
+                  <!-- <span class="visually-hidden">Likes:</span> -->
+                  <i class="fas fa-heart" aria-hidden="true"></i> {{u.description}}
                 </li>
                 <li class="gallery-item-comments">
                   <span class="visually-hidden">Comments:</span
@@ -600,11 +604,13 @@ Remove or comment-out the code block below to see how the browser will fall-back
             </div>
           </div>
           {% endfor %}
-        <!-- End of gallery -->
-
-        <!-- <div class="loader"></div> -->
       </div>
-      <!-- End of container -->
     </main>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+      function showdesc(str){
+        swal("{{user.first_name}}",str);
+      }
+    </script>
   </body>
 </html>

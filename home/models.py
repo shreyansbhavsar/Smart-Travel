@@ -20,7 +20,8 @@ class CustomUser(AbstractUser):
     charges = models.CharField(max_length=4, default='NULL')
     image = models.ImageField(upload_to='pics', default='NULL')
     bio = models.CharField(max_length=400, default='NULL')
-    REQUIRED_FIELD = ['username']
+    # REQUIRED_FIELD = ['username']
+    review = models.FloatField(default=0)
 
 
 class Order_table(models.Model):
@@ -30,7 +31,7 @@ class Order_table(models.Model):
     fullname = models.CharField(max_length=20)
     location = models.CharField(max_length=150)
     category = models.CharField(max_length=12, default='NULL')
-
+    service_provider = models.EmailField(default = 'NULL')
 
 class Image_table(models.Model):
     uid = models.CharField(max_length=10000)

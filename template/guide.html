@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Photographers</title>
+    <title>Guide</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <style>
     body {
@@ -118,7 +119,7 @@
       flex-direction: column;
       align-items: center;
       min-width: 260px;
-      height: 250px;
+      height: 60px;
       margin-top: 10px;
       background: -webkit-linear-gradient(top, #3a404d, #181c26);
       background: linear-gradient(to bottom, #3a404d, #181c26);
@@ -331,11 +332,21 @@
     <!-- NAVBAR -->
     <div class="navbar">
       <div class="logo">Smart Travel</div>
+      <i style="font-size:24px" class="fa">&#xf0b0;</i>
+
+    <select name="filter" onchange="sort()" id="filter" style="margin: 10px;">
+      <option value="0">default </option>
+      <option value="1"><a>Price : Low to High</option>
+      <option value="2">Price : High to Low </option>
+      <option value="3">Rating</option>
+      <!-- <option value="opel">Opel</option> -->
+      <!-- <option value="audi">Audi</option> -->
+    </select>
       <div class="account-container">
-        <i class="fa fa-user" aria-hidden="true"></i>
-        <div class="cart-desc">
           <!-- <input type="button" value="My account" /> -->
-          <button onclick="document.location='dashboard'">Dashboard</button>
+          <!-- <button onclick="document.location='dashboard'" style="margin: 15px;">Dashboard</button> -->
+          <form action="/dashboard" method="GET" class="nav"><input value="Dashboard" type="submit">
+          </form>
         </div>
       </div>
       <!-- <div class="cart-container">
@@ -347,7 +358,7 @@
     <!-- INFO BAR -->
     <div class="info-wrapper">
       <div class="shipping-container">
-        <i class="fa fa-truck fa-2x"></i>
+        <i class=""></i>
         <div class="info-desc">Guide :</div>
       </div>
       <!-- <div class="inventory-container">
@@ -359,9 +370,9 @@
     <!-- MAIN WRAPPER -->
     <div class="main-wrapper">
       <div class="menu">
-        <div class="menu-item Amazon">
+        <div class="menu-item Amazon" style="height : 60px">
           <div class="menu-item-title">Guide</div>
-          <div class="menu-item-number">{{g.count}}</div>
+          <div class="menu-item-number">{{g | length}}</div>
         </div>
       </div>
 
@@ -375,9 +386,11 @@
             <img src="{{gi.image.url}}" style="height: 125px; width: 245px" />
           </div>
           <div class="cta">
-            <div class="price">${{gi.charges}}/day</div>
+            <span class="price" >&#9733;{{gi.review}}/5.0</span>
+            <!-- <div class="price" style="position:relative; ">&#x20B9;{{gi.charges}}/day</div> -->
+            <span class="price" style="position:relative; right:95px; top:23px;">&#x20B9;{{gi.charges}}/day</span>
             <!-- <button class="button"onclick="document.location='viewprofile'">View</button> -->
-            <a href="viewprofile/{{gi.id}}" class="button">View</a>
+            <a href="/viewprofile/{{gi.id}}" class="button" style="position:relative;right:30px;">View</a>
           </div>
         </div>
         {% endfor %}
@@ -390,5 +403,18 @@
       <div>asdasdas asd as</div>
       <div>asdasdas asd as</div>
     </div>
+    <script>
+      document.getElementById("filter").selectedIndex = "{{select}}";
+
+      function sort(){
+        var value = document.getElementById('filter').value;
+        if(value != 0){
+          window.location = '/guide/'  + value;
+        }
+        else{
+          window.location = '/guide'
+        }        
+      }
+    </script>
   </body>
 </html>

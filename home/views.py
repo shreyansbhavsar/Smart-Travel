@@ -21,6 +21,10 @@ from django.core.mail import send_mail
 def index(request):
     return render(request, 'base.html')
 
+def reviews(request,id):
+    if request.method == 'GET':
+        data = CustomUser.objects.get(id=id)
+        return render(request, 'reviews.html')
 
 def addphoto(request, id):
     data = CustomUser.objects.get(id=id)
@@ -91,6 +95,7 @@ def order(request, id):
     else:
         data = CustomUser.objects.get(id=id)
         m = request.POST['orderid']
+        semail = data.email
 
         orderid = request.POST['orderid']
         email = request.POST['email']
@@ -106,9 +111,10 @@ def order(request, id):
         obj.fullname = fullname
         obj.phnum = phnum
         obj.category = category
-
+        obj.service_provider = semail
         obj.save()
-        semail = data.email
+        
+        print(semail)
         subject = "Order recieved"
         message = "You have received an order form" + request.user.username + " for the location" + location + \
             " . Kindly note it and Contact the user. The Contact details are :" + \
@@ -136,8 +142,6 @@ def profile(request):
         zc = request.POST.get('zipcode', False)
         ch = request.POST.get('charges', False)
         bio = request.POST.get('bio', False)
-        # print(un)
-    #     myuser = CustomUser()
 
         data.first_name = fn
 
@@ -256,17 +260,51 @@ def pdashboard(request):
 
 @ login_required
 @ t_only
-def photographer(request):
+def photographer(request,filter=0):
     # pcount = CustomUser.objects.filter(category='Photographer').count()
     x = CustomUser.objects.filter(category='Photographer').all()
     print(str(x))
+    if filter != 0:
+        if filter == 1:
+            x = x.order_by('charges')[:]
+        if filter == 2:
+             x = x.order_by('charges')[::-1]
+        if filter == 3:
+            x = x.order_by('review')[::-1]
+
     # pgrapher = CustomUser.objects.filter(category='Photographer').all()
-    return render(request, 'photographer.html', {'x': x})
+    return render(request, 'photographer.html', {'x': x,'select':filter})
 
 
 @ login_required
 @ t_only
-def guide(request):
-    g = CustomUser.objects.filter(category='Guide').all()
-    print(str(g))
-    return render(request, 'guide.html', {'g': g})
+def guide(request,filter = 0):    
+    g = g = CustomUser.objects.filter(category='Guide')
+    if filter != 0:
+        if filter == 1:
+            g = g.order_by('charges')[:]
+        if filter == 2:
+             g = g.order_by('charges')[::-1]
+        if filter == 3:
+            g = g.order_by('review')[::-1]
+
+    return render(request, 'guide.html', {'g': g,'select' : filter})
+
+
+def review(request,email = None,rating = None):
+
+    vals = {"Satisfied":5,"Neutral" : 3, "Unhappy" : 1}
+    print('rating')
+    if rating is not None and email is not None:
+        current_rating = CustomUser.objects.get(email=email).review
+        if(current_rating != 0.0):
+            current_rating += vals[rating]
+            current_rating /= 2
+        else:
+            current_rating = vals[rating]
+        edited_review_obj = CustomUser.objects.get(email=email)
+        edited_review_obj.review = current_rating
+        edited_review_obj.save()
+        return redirect("myorders")
+
+    return render(request,'reviews.html')

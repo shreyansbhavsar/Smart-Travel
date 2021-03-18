@@ -79,11 +79,11 @@
               <!--Table head-->
               <thead class="mdb-color darken-3">
                 <tr class="text-white">
-                  <th>#</th>
                   <th>Order Id</th>
                   <th>Name</th>
                   <th>Who it is ?</th>
                   <th>Location</th>
+                  <th>Review</th>
                   <!-- <th>Email ID</th> -->
                   <!-- <th>Pickup Location</th> -->
                   <!-- <th>Drop Location</th> -->
@@ -97,12 +97,13 @@
               <tbody>
                 <tr>
                   
-                  <th scope="row">{{count}}</th>
+                  <!-- <th scope="row">{{count}}</th> -->
                   <td>{{orders.orderid}}</td>
                   <td>{{orders.fullname}}</td>
                   <td>{{orders.category}}</td>
                   <td>{{orders.location}}</td>
-                
+                  <td><a href="review/{{orders.service_provider}}">Review</button></td>
+
                 </tr>
                 
                 {%endfor%}
