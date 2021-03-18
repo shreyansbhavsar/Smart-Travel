@@ -1,0 +1,325 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TravelLite</title>
+
+    <!-- CSS  -->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'css/materialize.css' %}"
+      type="text/css"
+      rel="stylesheet"
+      media="screen,projection"
+    />
+    <link
+      href="{% static 'css/style.css' %}"
+      type="text/css"
+      rel="stylesheet"
+      media="screen,projection"
+    />
+  </head>
+  <style>
+    
+    .sidebar {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: #111;
+      overflow-x: hidden;
+      transition: 0.5s;
+      padding-top: 60px;
+    }
+
+    .sidebar a {
+      padding: 8px 8px 8px 32px;
+      text-decoration: none;
+      font-size: 25px;
+      color: #818181;
+      display: block;
+      transition: 0.3s;
+    }
+
+    .sidebar a:hover {
+      color: #f1f1f1;
+    }
+
+    .sidebar .closebtn {
+      position: absolute;
+      top: 0;
+      right: 25px;
+      font-size: 36px;
+      margin-left: 50px;
+    }
+
+    .openbtn {
+      font-size: 20px;
+      cursor: pointer;
+      background-color: #2bbbad;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      margin-right: 30px;
+    }
+
+    .openbtn:hover {
+      background-color: #444;
+    }
+
+    #main {
+      transition: margin-left 0.5s;
+      padding: 16px;
+    }
+
+    /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+    @media screen and (max-height: 450px) {
+      .sidebar {
+        padding-top: 15px;
+      }
+
+      .sidebar a {
+        font-size: 18px;
+      }
+    }
+    .dropbtn {
+      background-color: #4CAF50;
+      color: white;
+      padding: 16px;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+    
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+    
+    .dropdown-content a:hover {background-color: #f1f1f1}
+    
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    
+    .dropdown:hover .dropbtn {
+      background-color: #3e8e41;
+    }
+  </style>
+
+  <body>
+    <nav class="white" role="navigation">
+      <div class="nav-wrapper container">
+        <button class="openbtn" onclick="openNav()">☰</button>
+        <a id="logo-container" href="/" class="brand-logo teal-text"
+          >TravelLite</a
+        >
+        <ul class="right hide-on-med-and-down">
+          <!-- <li><a href="/">Flights</a></li>
+          <li><a href="/hotels">Hotels</a></li>
+          <li><a href="/trains">Trains</a></li>
+          <li><a href="/explore">Explore</a></li>
+          <li><a href="/reviews">Review</a></li> -->
+          <!-- Dropdown Trigger -->
+
+          <a class="dropdown-trigger btn" href="#" data-target="dropdown1"
+            >My Account</a
+          >
+          {% if user.is_authenticated %}          
+          <ul id="dropdown1" class="dropdown-content">
+            {% if user.category == 'Traveller'%}
+              <li><a href="/dashboard">Dashboard</a></li>
+            {% endif %}
+            {% if user.category == 'Photographer' %}
+              <li><a href="/pdashboard">Profile</a></li>
+            {% elif user.category == 'Guide' %}
+              <li><a href="/g_dashboard">Profile</a></li>
+            {% else %}
+              <li><a href="/profile">Profile</a></li>
+            {% endif %}
+            <li><a href="/logout">Log Out</a></li>
+          </ul>
+          {% else %}
+          <!-- Dropdown Structure -->
+          <ul id="dropdown1" class="dropdown-content">
+            <li><a href="/login">Log In</a></li>
+            <li><a href="/signup">Sign Up</a></li>
+          </ul>
+          {% endif %}
+        </ul>
+
+        <ul id="nav-mobile" class="sidenav">
+          <li><a href="/">TravelLite</a></li>
+          <li class="divider" tabindex="-1"></li>
+          <li><a href="/">Flights</a></li>
+          <li><a href="/hotels">Hotels</a></li>
+          <li><a href="/trains">Trains</a></li>
+          <li><a href="/explore">Explore</a></li>
+          <li><a href="/reviews">Review</a></li>
+          <li class="divider" tabindex="-1"></li>
+          {% if request.session.current_user %}
+          <li><a href="/account">Settings</a></li>
+          <li><a href="/logout">Log Out</a></li>
+          {% else %}
+          <li><a class="teal-text" href="/login">Log In</a></li>
+          <li><a href="/signup">Sign Up</a></li>
+          {% endif %}
+        </ul>
+        <a href="#" data-target="nav-mobile" class="sidenav-trigger"
+          ><i class="material-icons">menu</i></a
+        >
+      </div>
+    </nav>
+
+    <div id="mySidebar" class="sidebar">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+      <a href="#">About us</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Sponsors</a>
+      <a href="#">Contact us</a>
+    </div>
+
+    <script>
+      function openNav() {
+        document.getElementById("mySidebar").style.width = "250px";
+        document.getElementById("main").style.marginLeft = "250px";
+      }
+
+      function closeNav() {
+        document.getElementById("mySidebar").style.width = "0";
+        document.getElementById("main").style.marginLeft = "0";
+      }
+    </script>
+
+    {% block content %}
+
+    <div id="index-banner" class="parallax-container">
+      <div class="section no-pad-bot">
+        <div class="container">
+          <br /><br />
+          <h1 class="center light" style="color: rgb(11, 29, 11)">
+            Welcome to SMART TRAVEL
+          </h1>
+          <div class="row center">
+            <h5 class="header col s12 light">
+              A modern way of making you travel much easier....!
+            </h5>
+          </div>
+          <div class="row center">
+            <!-- <a
+              href="http://materializecss.com/getting-started.html"
+              id="download-button"
+              class="btn-large waves-effect waves-light teal lighten-1"
+              >Sign Up</a
+            > -->
+            <a
+              href="/login"
+              id="download-button"
+              class="btn-large waves-effect waves-light teal lighten-1"
+              >Log In</a
+            >
+          </div>
+          <br /><br />
+        </div>
+      </div>
+      <div class="parallax">
+        <img
+          src="{% static 'images/background3.jpg' %}"
+          alt="Unsplashed background img 1"
+        />
+      </div>
+    </div>
+    {% endblock content %}
+
+    <footer class="page-footer teal">
+      <div class="container">
+        <div class="row">
+          <div class="col l8 s8">
+            <h5 class="white-text">Team Bio :</h5>
+            <p class="grey-text text-lighten-4">
+              Project Partners :
+              <ol>
+                <li>
+                  IT-015
+                </li>
+                <li> IT-018 </li>
+              </ol>
+              We are a team of college students working hard to provide the best
+              possible service to users.
+            </p>
+          </div>
+          <div class="col l4 s4">
+            <h5 class="white-text">More</h5>
+            <!-- <ul>
+              <li><a class="white-text" href="#!">Our design</a></li>
+            </ul> -->
+          </div>
+        </div>
+      </div>
+      <div>
+        <h5 class="centeralign"> Dharamsinh Desai University </h5>
+        <!-- <div class="container">
+          Made by
+          <a class="brown-text text-lighten-3" href="http://materializecss.com"
+            >Materialize</a
+          >
+        </div> -->
+      </div>
+    </footer>
+  </body>
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="{% static 'js/materialize.js' %}"></script>
+  <script src="{% static 'js/init.js' %}"></script>
+  <script>
+    $(".dropdown-trigger").dropdown();
+
+    M.textareaAutoResize($("#textarea1"));
+
+    $(".datepicker").datepicker({
+      format: "yyyy-mm-dd",
+      selectMonths: true, // Creates a dropdown to control month
+      selectYears: 15, // Creates a dropdown of 15 years to control year,
+      today: "Today",
+      clear: "Clear",
+      close: "Ok",
+      closeOnSelect: true,
+      autoClose: true,
+    });
+
+    $("input.autocomplete").autocomplete({
+      data: {
+        "New York City, NY": null,
+        "Los Angeles, CA": null,
+        "Boston, MA": null,
+        "Chicago, IL": null,
+        "Las Vegas, NV": null,
+        "Atlanta, GA": null,
+      },
+    });
+  </script>
+</html>
