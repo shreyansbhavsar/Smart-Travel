@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Guide</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+ 
   </head>
   <style>
     body {
@@ -333,14 +335,22 @@
     <div class="navbar">
       <div class="logo">Smart Travel</div>
       <i style="font-size:24px" class="fa">&#xf0b0;</i>
-
+      <center>
+        <select style="margin: 10px; text-align: center;" id='locationfilter' onchange="sort_location()">
+          <option value="0">Default</option>
+          <option value="1"><a>Ahmedabad</option>
+          <option value="2">Surat</option>
+          <option value="3">Baroda</option>
+          <option value="4">Nadiad</option>
+          <!-- <option value="3"></option> -->
+        </select>
+    </center>
+      <!-- <i style="font-size:24px" class="fa">&#xf0b0;</i> -->
     <select name="filter" onchange="sort()" id="filter" style="margin: 10px;">
-      <option value="0">default </option>
+      <option value="0">Default </option>
       <option value="1"><a>Price : Low to High</option>
       <option value="2">Price : High to Low </option>
       <option value="3">Rating</option>
-      <!-- <option value="opel">Opel</option> -->
-      <!-- <option value="audi">Audi</option> -->
     </select>
       <div class="account-container">
           <!-- <input type="button" value="My account" /> -->
@@ -403,16 +413,35 @@
       <div>asdasdas asd as</div>
       <div>asdasdas asd as</div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script>
+
+      console.log("{{location}}");
       document.getElementById("filter").selectedIndex = "{{select}}";
+      document.getElementById("locationfilter").selectedIndex = jQuery('#locationfilter option:contains("{{location}}")').val()
+      function sort_location(){
+        var value = document.getElementById('locationfilter').value;
+        var name = document.getElementById('locationfilter').options;
+        if(value != 0){
+          window.location = '/guide/' + name[value].text;
+        }
+        else{
+          window.location = '/guide';
+        }
+      }
 
       function sort(){
         var value = document.getElementById('filter').value;
         if(value != 0){
-          window.location = '/guide/'  + value;
+          if("{{location}}" != ""){
+            window.location = '/guide/' + "{{location}}/"  + value;
+          }
+          else{
+            window.location = '/guide/' + value;
+          }
         }
         else{
-          window.location = '/guide'
+          window.location = '/guide';
         }        
       }
     </script>

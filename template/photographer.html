@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Photographers</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
   </head>
   <style>
     .container {
@@ -336,16 +337,25 @@
     <div class="navbar">
       <div class="logo">Smart Travel</div>
       <i style="font-size:24px" class="fa">&#xf0b0;</i>
-
+      <select style="margin: 10px;">
+        <option value="">Default</option>
+        <option value=""><a>Ahmedabad</option>
+        <option value="">Surat</option>
+        <option value="">Baroda</option>
+        <option value="">Nadiad</option>
+      </select>
     <select name="filter" onchange="sort()" id="filter" style="margin: 10px;">
-      <option value="0">default </option>
+      <option value="0">Default </option>
       <option value="1"><a>Price : Low to High</option>
       <option value="2">Price : High to Low </option>
       <option value="3">Rating</option>
     </select>
       <div class="account-container">
           <!-- <button onclick="document.location='dashboard'" style="margin: 15px;">Dashboard</button>tton >dashboard</button> -->
-          <form action="/dashboard" method="GET" class="nav"><input value="Dashboard" type="submit">
+          <form action="/dashboard" method="GET" class="nav" style="background-color: #e7e7e7; color: black;"><input value="Dashboard" type="submit">
+            <!-- <button class="btn profile-edit-btn" style="background-color: #e7e7e7; color: black;"> -->
+              <!-- <a href="/dashboard"> Dashboard</a> -->
+            <!-- </button> -->
           </form>
         </div>
       </div>

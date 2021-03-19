@@ -278,8 +278,10 @@ def photographer(request,filter=0):
 
 @ login_required
 @ t_only
-def guide(request,filter = 0):    
-    g = g = CustomUser.objects.filter(category='Guide')
+def guide(request,filter = 0,location=""):    
+    g = CustomUser.objects.filter(category='Guide')
+    if location != "":
+        g = CustomUser.objects.filter(category='Guide',location = location)
     if filter != 0:
         if filter == 1:
             g = g.order_by('charges')[:]
@@ -288,7 +290,7 @@ def guide(request,filter = 0):
         if filter == 3:
             g = g.order_by('review')[::-1]
 
-    return render(request, 'guide.html', {'g': g,'select' : filter})
+    return render(request, 'guide.html', {'g': g,'select' : filter,'location' : location})
 
 
 def review(request,email = None,rating = None):

@@ -22,6 +22,8 @@
       rel="stylesheet"
       media="screen,projection"
     />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+ 
   </head>
   <style>
     /*
@@ -581,43 +583,29 @@ Remove or comment-out the code block below to see how the browser will fall-back
       </div>
       <!-- End of container -->
     </header>
-    <main>
-        
-      <div class="container">
-        <!-- <button class="btn profile-edit-btn" style = "margin-left:350px;" > -->
-          <a href="addphoto/{{user.id}}" class="btn profile-edit-btn" style = "margin-left:300px;"> ADD PHOTOS</a>
-          <!-- <form action="addphoto/{{user.id}}" method="GET" class="btn profile-edit-btn"><input value="Add Photos" type="submit"> -->
-        <!-- </button> -->
+      <main class="container">
+        <a href="addphoto/{{user.id}}" class="btn profile-edit-btn" style = "margin-left:300px;"> ADD PHOTOS</a>
         <br>
         <br>
-        {% for u in u %}
-        <div class="gallery">
-          <div class="gallery-item" tabindex="0">
-            <img
-              src="{{u.img.url}}"
-              class="gallery-image"
-              alt=""
-            />
-            
-            <div class="gallery-item-info">
-              <ul>
-                <li class="gallery-item-likes">
-                  <span class="visually-hidden">Likes :</span
-                  ><i class="fas fa-heart" aria-hidden="true"></i> {{u.description}}
-                </li>
-                <li class="gallery-item-comments">
-                  <span class="visually-hidden">Comments:</span
-                  ><i class="fas fa-comment" aria-hidden="true"></i> 
-                </li>
-              </ul>
+        <div class="row">
+            <div class="col-md-9">
+                <div class="row">
+                    {% for u in u %}
+                        <div class="col-md-6">
+                                <div class="card" onclick="showdesc('{{u.description}}')">
+                                    <img src="{{u.img.url}}" class="card-img-top" style="height:240px;">
+                                </div>
+                        </div>  
+                    {%endfor%}                  
+                </div>
             </div>
-          </div>
-          {%endfor%}
-        <!-- End of gallery -->
-<!-- 
-        <div class="loader"></div> -->
-      </div>
-      <!-- End of container -->
-    </main>
+        </div>
+     </main>
+     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+     <script>
+      function showdesc(str){
+        swal("{{user.first_name}}",str);
+      }
+    </script>
   </body>
 </html>

@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard</title>
+    <title>ViewProfile</title>
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
@@ -22,6 +22,8 @@
       rel="stylesheet"
       media="screen,projection"
     />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+ 
   </head>
   <style>
     /*
@@ -90,7 +92,7 @@ Flexbox and floats are used as a fallback so that browsers which don't support g
       padding: 16px;
     }
 
-    /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+  
     @media screen and (max-height: 450px) {
       .sidebar {
         padding-top: 15px;
@@ -578,34 +580,22 @@ Remove or comment-out the code block below to see how the browser will fall-back
       </div>
       <!-- End of container -->
     </header>
-
-    <main>
+    <main class="container">
       {{u.uid}}
-      {% for u in u %}
-      <div class="container">
-        <div class="gallery">
-          <div class="gallery-item" tabindex="0" onclick="showdesc('{{u.description}}')">
-            <img
-              src="{{u.img.url}}"
-              class="gallery-image"
-              alt=""
-            />
-            <div class="gallery-item-info">
-              <ul>
-                <li class="gallery-item-likes" id='description'>
-                  <!-- <span class="visually-hidden">Likes:</span> -->
-                  <i class="fas fa-heart" aria-hidden="true"></i> {{u.description}}
-                </li>
-                <li class="gallery-item-comments">
-                  <span class="visually-hidden">Comments:</span
-                  ><i class="fas fa-comment" aria-hidden="true"></i> 
-                </li>
-              </ul>
-            </div>
+      <div class="row">
+          <div class="col-md-9">
+              <div class="row">
+                  {% for u in u %}
+                      <div class="col-md-6">
+                              <div class="card" onclick="showdesc('{{u.description}}')">
+                                  <img src="{{u.img.url}}" class="card-img-top" style="height:240px;">
+                              </div>
+                      </div>  
+                  {%endfor%}                  
+              </div>
           </div>
-          {% endfor %}
       </div>
-    </main>
+   </main>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
       function showdesc(str){
