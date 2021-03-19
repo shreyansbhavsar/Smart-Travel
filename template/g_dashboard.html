@@ -158,7 +158,7 @@ Flexbox and floats are used as a fallback so that browsers which don't support g
     body {
       font-family: "Open Sans", Arial, sans-serif;
       min-height: 100vh;
-      background-color: #fafafa;
+      background-color: #009688;
       color: #262626;
       padding-bottom: 3rem;
     }
@@ -549,13 +549,21 @@ Remove or comment-out the code block below to see how the browser will fall-back
               {{user.first_name}} {{user.last_name}}
             </h1>
             <br>
-            <button class="btn profile-edit-btn">
+            <button class="btn profile-edit-btn" style="color: white; background-color: white">
+              <a href="profile" style="color: #009688;">Edit Profile</a>
+            </button>
+
+            <button class="btn profile-edit-btn" style="color: white; background-color: white;">
+              <a href="logout" style="color: #009688;">Logout</a>
+            </button>
+
+            <!-- <button class="btn profile-edit-btn">
               <a href="profile"> Edit Profile</a>
             </button>
 
             <button class="btn profile-edit-btn">
               <a href="logout"> Logout </a>
-            </button>
+            </button> -->
 
             <button
               class="btn profile-settings-btn"
@@ -584,7 +592,9 @@ Remove or comment-out the code block below to see how the browser will fall-back
       <!-- End of container -->
     </header>
       <main class="container">
-        <a href="addphoto/{{user.id}}" class="btn profile-edit-btn" style = "margin-left:300px;"> ADD PHOTOS</a>
+        <button class="btn profile-edit-btn" style="color: white; background-color: white; margin-left:300px;">
+          <a href="addphoto/{{user.id}}" style="color: #009688;">Add Photoes</a>
+        </button>
         <br>
         <br>
         <div class="row">
@@ -592,7 +602,7 @@ Remove or comment-out the code block below to see how the browser will fall-back
                 <div class="row">
                     {% for u in u %}
                         <div class="col-md-6">
-                                <div class="card" onclick="showdesc('{{u.description}}')">
+                                <div class="card" onclick="showdesc('{{u.description}}')" style="border-radius: 5px; border-color:white; border-width: 3px;">
                                     <img src="{{u.img.url}}" class="card-img-top" style="height:240px;">
                                 </div>
                         </div>  
