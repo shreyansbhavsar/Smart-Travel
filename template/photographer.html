@@ -9,9 +9,6 @@
     
   </head>
   <style>
-    .container {
-  margin: 1rem;
-  }
     body {
       height: 100%;
       width: 100vw;
@@ -24,12 +21,13 @@
       );
       background: radial-gradient(
         ellipse farthest-corner at center top,
-        #446cb3 0%,
-        #22313f 100%
+        #009688 0%,
+        #009688 100%
       );
       color: #fff;
       font-family: "Open Sans", sans-serif;
     }
+
     /*--------------------
       NAVBAR
       --------------------*/
@@ -82,6 +80,7 @@
       height: 50px;
       padding-top: 70px;
       z-index: 1;
+      font: cursive;
     }
 
     .shipping-container {
@@ -102,8 +101,9 @@
     }
 
     .info-desc {
+      font: Cursive;
       font-weight: 700;
-      font-size: 15px;
+      font-size: 28px;
     }
 
     .main-wrapper {
@@ -124,8 +124,8 @@
       min-width: 260px;
       height: 60px;
       margin-top: 10px;
-      background: -webkit-linear-gradient(top, #3a404d, #181c26);
-      background: linear-gradient(to bottom, #3a404d, #181c26);
+      background: -webkit-linear-gradient(top, #009688, #009688);
+      background: linear-gradient(to bottom, #009688, #009688);
       border-radius: 10px;
       box-shadow: 0 7px 30px rgba(62, 9, 11, 0.3);
     }
@@ -145,20 +145,20 @@
 
     .menu-item:nth-child(4) {
       border-radius: 0 0 10px 10px;
-      background: #3d61a1;
+      background: #009688;
     }
 
     .menu-item:nth-child(3) {
-      background: #36568f;
+      background: #009688;
     }
 
     .menu-item:nth-child(2) {
-      background: #2f4b7d;
+      background: #009688;
     }
 
     .menu-item:nth-child(1) {
       border-radius: 10px 10px 0 0;
-      background: #28406b;
+      background: #009688;
     }
 
     .menu-item:hover {
@@ -186,11 +186,11 @@
     }
 
     .menu-item-number:nth-child(1) {
-      color: #28406b;
+      color: #009688;
     }
 
     .menu-item-number:nth-child(2) {
-      color: #2f4b7d;
+      color: #009688;
     }
 
     .menu-item-number:nth-child(3) {
@@ -219,7 +219,9 @@
       height: 270px;
       background: #f5f5f5;
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-      border-radius: 5px;
+      border-radius:15px;
+      border-color: black;
+      border-style: solid;
       padding: 20px;
       text-align: center;
       font-family: "Open Sans Condensed", sans-serif;
@@ -256,7 +258,7 @@
     }
 
     .price {
-      color: #28406b;
+      color: #009688;
       font-size: 22px;
       font-weight: 900;
       transition: color 0.3s ease-in-out;
@@ -266,7 +268,7 @@
       font-size: 13px;
       font-weight: 900;
       text-transform: uppercase;
-      color: #28406b;
+      color: #009688;
       padding: 12px 18px;
       cursor: pointer;
       transition: all 300ms;
@@ -274,7 +276,7 @@
       border: none;
       background: none;
       outline: none;
-      border: 1px solid #28406b;
+      border: 1px solid #009688;
       border-radius: 20px;
     }
 
@@ -291,7 +293,7 @@
     }
 
     .button:hover {
-      background: linear-gradient(135deg, #3d61a1, #28406b);
+      background: linear-gradient(135deg, #009688, #009688);
       color: #fff;
       border: none;
     }
@@ -337,13 +339,17 @@
     <div class="navbar">
       <div class="logo">Smart Travel</div>
       <i style="font-size:24px" class="fa">&#xf0b0;</i>
-      <select style="margin: 10px;">
-        <option value="">Default</option>
-        <option value=""><a>Ahmedabad</option>
-        <option value="">Surat</option>
-        <option value="">Baroda</option>
-        <option value="">Nadiad</option>
-      </select>
+      <center>
+        <select style="margin: 10px; text-align: center;" id='locationfilter' onchange="sort_location()">
+          <option value="0">Default</option>
+          <option value="1"><a>Ahmedabad</option>
+          <option value="2">Surat</option>
+          <option value="3">Baroda</option>
+          <option value="4">Nadiad</option>
+          <!-- <option value="3"></option> -->
+        </select>
+    </center>
+      <!-- <i style="font-size:24px" class="fa">&#xf0b0;</i> -->
     <select name="filter" onchange="sort()" id="filter" style="margin: 10px;">
       <option value="0">Default </option>
       <option value="1"><a>Price : Low to High</option>
@@ -351,11 +357,9 @@
       <option value="3">Rating</option>
     </select>
       <div class="account-container">
-          <!-- <button onclick="document.location='dashboard'" style="margin: 15px;">Dashboard</button>tton >dashboard</button> -->
-          <form action="/dashboard" method="GET" class="nav" style="background-color: #e7e7e7; color: black;"><input value="Dashboard" type="submit">
-            <!-- <button class="btn profile-edit-btn" style="background-color: #e7e7e7; color: black;"> -->
-              <!-- <a href="/dashboard"> Dashboard</a> -->
-            <!-- </button> -->
+          <!-- <input type="button" value="My account" /> -->
+          <!-- <button onclick="document.location='dashboard'" style="margin: 15px;">Dashboard</button> -->
+          <form action="/dashboard" method="GET" class="nav"><input value="Dashboard" type="submit">
           </form>
         </div>
       </div>
@@ -408,16 +412,35 @@
       <div>asdasdas asd as</div>
       <div>asdasdas asd as</div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script>
+
+      console.log("{{location}}");
       document.getElementById("filter").selectedIndex = "{{select}}";
+      document.getElementById("locationfilter").selectedIndex = jQuery('#locationfilter option:contains("{{location}}")').val()
+      function sort_location(){
+        var value = document.getElementById('locationfilter').value;
+        var name = document.getElementById('locationfilter').options;
+        if(value != 0){
+          window.location = '/photographer/' + name[value].text;
+        }
+        else{
+          window.location = '/photographer';
+        }
+      }
 
       function sort(){
         var value = document.getElementById('filter').value;
         if(value != 0){
-          window.location = '/photographer/'  + value;
+          if("{{location}}" != ""){
+            window.location = '/photographer/' + "{{location}}/"  + value;
+          }
+          else{
+            window.location = '/photographer/' + value;
+          }
         }
         else{
-          window.location = '/photographer'
+          window.location = '/photographer';
         }        
       }
     </script>

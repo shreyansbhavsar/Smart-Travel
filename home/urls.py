@@ -17,6 +17,8 @@ urlpatterns = [
     path('guide/<int:filter>', views.guide, name='guide'),
     path('guide/<str:location>',views.guide),
     path('guide/<str:location>/<int:filter>',views.guide,name='guide'),
+    path('photographer/<str:location>',views.photographer),
+    path('photographer/<str:location>/<int:filter>',views.photographer,name='photographer'),
     path('photographer/<int:filter>', views.photographer, name='photographer'),
     path('viewprofile/order/<int:id>', views.order, name='order'),
     path('viewprofile/reviews/<int:id>', views.reviews, name='reviews'),

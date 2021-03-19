@@ -158,7 +158,7 @@ Flexbox and floats are used as a fallback so that browsers which don't support g
     body {
       font-family: "Open Sans", Arial, sans-serif;
       min-height: 100vh;
-      background-color: #fafafa;
+      background-color: #009688;
       color: #262626;
       padding-bottom: 3rem;
     }
@@ -544,8 +544,8 @@ Remove or comment-out the code block below to see how the browser will fall-back
             </h1>
             <br>
             <!-- <button class="btn profile-edit-btn"> -->
-            <button class="btn profile-edit-btn">
-              <a href="order/{{user.id}}"> Order</a>
+            <button class="btn profile-edit-btn" style="color: seashell; background-color: seashell;">
+              <a href="order/{{user.id}}" style="color: #009688;"> Order</a>
             </button>
             
             <!-- <button class="btn profile-edit-btn">
@@ -587,8 +587,8 @@ Remove or comment-out the code block below to see how the browser will fall-back
               <div class="row">
                   {% for u in u %}
                       <div class="col-md-6">
-                              <div class="card" onclick="showdesc('{{u.description}}')">
-                                  <img src="{{u.img.url}}" class="card-img-top" style="height:240px;">
+                              <div class="card" onclick="showdesc('{{u.description}}')" style="border-radius: 5px; border-color:white; border-width: 3px;">
+                                  <img src="{{u.img.url}}" class="card-img-top" style="height:240px; border:red;">
                               </div>
                       </div>  
                   {%endfor%}                  

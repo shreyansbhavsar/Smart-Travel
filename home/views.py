@@ -260,10 +260,11 @@ def pdashboard(request):
 
 @ login_required
 @ t_only
-def photographer(request,filter=0):
+def photographer(request,filter=0,location=""):
     # pcount = CustomUser.objects.filter(category='Photographer').count()
     x = CustomUser.objects.filter(category='Photographer').all()
-    print(str(x))
+    if location != "":
+            x = CustomUser.objects.filter(category='Guide',location = location)
     if filter != 0:
         if filter == 1:
             x = x.order_by('charges')[:]
@@ -272,8 +273,7 @@ def photographer(request,filter=0):
         if filter == 3:
             x = x.order_by('review')[::-1]
 
-    # pgrapher = CustomUser.objects.filter(category='Photographer').all()
-    return render(request, 'photographer.html', {'x': x,'select':filter})
+    return render(request, 'photographer.html', {'x': x,'select' : filter,'location' : location})
 
 
 @ login_required

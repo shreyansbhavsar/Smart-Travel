@@ -22,11 +22,11 @@
   <style>
     .hm-gradient {
       background: #dbe6f6;
-      background: -webkit-linear-gradient(to bottom, #c5796d, #dbe6f6);
-      background: linear-gradient(to bottom, #c5796d, #dbe6f6);
+      background: -webkit-linear-gradient(to bottom, #009688, #dbe6f6);
+      background: linear-gradient(to bottom, #009688, #dbe6f6);
     }
     .darken-grey-text {
-      color: #2e2e2e;
+      color: #009688;
     }
     .input-group.md-form.form-sm.form-2 input {
       border: 1px solid #bdbdbd;
@@ -38,14 +38,14 @@
     }
     .input-group.md-form.form-sm.form-2
       input[type="text"]:focus:not([readonly]).purple-border {
-      border: 1px solid #ba68c8;
+      border: 1px solid #009688;
       box-shadow: none;
     }
     .form-2 .input-group-addon {
-      border: 1px solid #ba68c8;
+      border: 1px solid #009688;
     }
     .danger-text {
-      color: #ff3547;
+      color: #009688;
     }
     .success-text {
       color: #00c851;
@@ -53,7 +53,7 @@
     .table-bordered.red-border,
     .table-bordered.red-border th,
     .table-bordered.red-border td {
-      border: 1px solid #ff3547 !important;
+      border: 1px solid #009688 !important;
     }
     .table.table-bordered th {
       text-align: center;
@@ -64,21 +64,27 @@
       <!--MDB Tables-->
       <div class="container mt-4">
         <div class="text-center darken-grey-text mb-4">
-          <h1 class="font-bold mt-4 mb-3 h1"><b>My Orders ! </b></h1>
-          <br />
-          <form action="dashboard" method="GET"><input class="btn btn-danger btn-md" value="New order" type="submit">
+          <h1 class="font-bold mt-4 mb-3 h1" style="color: whitesmoke;"><b>My Orders ! </b></h1>
+          <br/>
+          <button class="btn profile-edit-btn" style="color: seashell; background-color: #009688; border-radius: 5px; border-color: whitesmoke; border:solid">
+            <a href="dashboard" style="color: whitesmoke;">New Order</a>
+          </button>
+          <button class="btn profile-edit-btn" style="color: seashell; background-color: #009688; border-radius: 5px; border-color: whitesmoke; border:solid">
+            <a href="logout" style="color: whitesmoke;">Logout</a>
+          </button>
+          <!-- <form action="dashboard" method="GET"><input class="btn btn-danger btn-md" value="New order" type="submit">
           </input></form>
           <form action="logout" method="GET"><input class="btn btn-danger btn-md" value="Log Out" type="submit">
-          </input></form>
+          </input></form> -->
           
 
-        <div class="card mb-3">
-          <div class="card-body">
+        <div class="card mb-3" style="color: #009688;">
+          <div class="card-body" style="color: #009688;">
             <!--Table-->
-            <table class="table table-hover">
+            <table class="table table-hover" style="color: #009688;">
               <!--Table head-->
-              <thead class="mdb-color darken-3">
-                <tr class="text-white">
+              <thead class="mdb-color darken-3" style="color: #009688;">
+                <tr class="text-white" style="color: #009688;">
                   <th>Order Id</th>
                   <th>Name</th>
                   <th>Who it is ?</th>

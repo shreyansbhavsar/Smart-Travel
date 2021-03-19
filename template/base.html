@@ -133,17 +133,13 @@
   <body>
     <nav class="white" role="navigation">
       <div class="nav-wrapper container">
-        <button class="openbtn" onclick="openNav()">☰</button>
-        <a id="logo-container" href="/" class="brand-logo teal-text"
+        <!-- <button class="openbtn" onclick="openNav()">☰</button> -->
+        <img src="/static/images/logo.jpg" alt="logo" style="width: 50px; margin-top: 11px; padding: auto;"/>
+        <a id="logo-container" href="/"   class="brand-logo teal-text"
           >Smart Travel</a
         >
+        class="brand-logo teal-text"
         <ul class="right hide-on-med-and-down">
-          <!-- <li><a href="/">Flights</a></li>
-          <li><a href="/hotels">Hotels</a></li>
-          <li><a href="/trains">Trains</a></li>
-          <li><a href="/explore">Explore</a></li>
-          <li><a href="/reviews">Review</a></li> -->
-          <!-- Dropdown Trigger -->
 
           <a class="dropdown-trigger btn" href="#" data-target="dropdown1"
             >My Account</a
@@ -171,7 +167,7 @@
           {% endif %}
         </ul>
 
-        <ul id="nav-mobile" class="sidenav">
+        <!-- <ul id="nav-mobile" class="sidenav">
           <li><a href="/">Smart Travel</a></li>
           <li class="divider" tabindex="-1"></li>
           <li><a href="/">Flights</a></li>
@@ -187,10 +183,10 @@
           <li><a class="teal-text" href="/login">Log In</a></li>
           <li><a href="/signup">Sign Up</a></li>
           {% endif %}
-        </ul>
-        <a href="#" data-target="nav-mobile" class="sidenav-trigger"
+        </ul> -->
+        <!-- <a href="#" data-target="nav-mobile" class="sidenav-trigger"
           ><i class="material-icons">menu</i></a
-        >
+        > -->
       </div>
     </nav>
 
@@ -220,34 +216,22 @@
       <div class="section no-pad-bot">
         <div class="container">
           <br /><br />
-          <h1 class="center light" style="color: rgb(11, 29, 11)">
+          <h1 class="center light brand-logo teal-text" style="  font-family: Fantasy; ">
             Welcome to SMART TRAVEL
           </h1>
           <div class="row center">
-            <h5 class="header col s12 light">
+            <h5 class="header col s12 light" style=" font-family: Fantasy; ">
               A modern way of making you travel much easier....!
             </h5>
           </div>
           <div class="row center">
-            <!-- <a
-              href="http://materializecss.com/getting-started.html"
-              id="download-button"
-              class="btn-large waves-effect waves-light teal lighten-1"
-              >Sign Up</a
-            > -->
-            <a
-              href="/login"
-              id="download-button"
-              class="btn-large waves-effect waves-light teal lighten-1"
-              >Log In</a
-            >
           </div>
           <br /><br />
         </div>
       </div>
       <div class="parallax">
         <img
-          src="{% static 'images/background3.jpg' %}"
+          src="https://www.clubmahindra.com/blog/media/section_images/shuttersto-027b04e4edc92ef.jpg"
           alt="Unsplashed background img 1"
         />
       </div>
@@ -257,25 +241,28 @@
     <footer class="page-footer teal">
       <div class="container">
         <div class="row">
-          <div class="col l8 s8">
-            <h5 class="white-text">Team Bio :</h5>
-            <p class="grey-text text-lighten-4">
+          <div class="col l8 s8" style="text-align: left;">
+            <h5 class="white-text" style="text-align: left;">Team Bio :</h5>
+            <p class="grey-text text-lighten-4" style="text-align: left;">
               Project Partners :
-              <ol>
-                <li>
-                  IT-015
-                </li>
-                <li> IT-018 </li>
-              </ol>
-              We are a team of college students working hard to provide the best
-              possible service to users.
+              <li style="text-align: left;">IT-015 Shreyans Bhavsar</li>
+              <li>IT-018 Avinash Butani</li>
+              <!-- <center> -->
+              <!-- </center> -->
+              <br>
+              <br>
+              
+              <center><h6 class="white-text" style="text-align-last: center;">In case of any Emergency Contact the <strong>EMAIL</strong> given : <b> smarttraveluser@gmail.com </b></h6></center>
+              <h5 class="white-text" style="text-align: left;"></h5>
             </p>
           </div>
+          <div>
+            <br>
+            <h5 class="white-text" >Under the guidance of :</h5>
+            <!-- <h6> Under the guidance of : </h6> -->
+            <h6> Prof. (Dr.) Vipul K Dabhi <br>
+              Associate Professor & Head </h6>
           <div class="col l4 s4">
-            <h5 class="white-text">More</h5>
-            <!-- <ul>
-              <li><a class="white-text" href="#!">Our design</a></li>
-            </ul> -->
           </div>
         </div>
       </div>

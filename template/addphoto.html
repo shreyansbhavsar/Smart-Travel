@@ -1,39 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Add Photos</title>
-    <style>
-      body{
-        background-image: url('https://png.pngtree.com/thumb_back/fh260/back_our/20190620/ourmid/pngtree-beautiful-technology-website-business-poster-background-template-image_148436.jpg');
-        background-repeat: no-repeat;
-        background-size: 1700px 1500px;
-      }
-      </style>
-  </head>
-  <body>
+{% extends "base.html" %} {% load static %} {% block content %}
+<div class="container">
+  <div class="row">
     <form action="" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
+      {% csrf_token %}
+      
+      <div style="text-lighten-2">
+        <div class="input-field col s12">
+          
+          <h5 class="input-field col s12"> Image to Upload : </h5><br>
+          <br>
+          <br>
+          <center>
+            <input type="file" id="img" name="img" accept="image/*"/>
+          </center>          
+        </div>
+        <div class="input-field col s12">
+          
+        <h5 class="input-field col s12"> Description : </h5><br>
+        <textarea id="w3review" name="description" ></textarea>
+        <!-- <input value="Upload" type="submit"> -->
+        </div>
         <center>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-        <label for="img">Image to Upload :</label>
-        <input type="file" id="img" name="img" accept="image/*" />
-        <br>
-        
-        <h4> Description : </h4><br>
-        <textarea id="w3review" name="description" rows="4" cols="50"></textarea>
-        <input value="Upload" type="submit">
-        
-        </input>
+          <button class="btn waves-effect waves-light" type="submit">
+            Submit
+            <i class="material-icons right">send</i>
+          </button>
         </center>
+        <br />
+        
+      </div>
     </form>
-  </body>
-</html>
+  </div>
+</div>
+
+
+{% endblock content %}

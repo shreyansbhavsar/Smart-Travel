@@ -359,36 +359,54 @@ $(document).ready(function(){
 });
 })
 </script>
-<body>
+<body style="background-color: #009688;">
     <!-- <button class="btn-nav">
         <div class="bar arrow-top-r"></div>
         <div class="bar arrow-middle-r"></div>
         <div class="bar arrow-bottom-r"></div>
       </button> -->
+      <section class="info">
+        <img src="/static/images/logo.jpg" alt="logo" style="width: 40px; height: 40px; margin-top: 3px; padding: auto;"/>
+         <p style="font-family:Cursive; color: floralwhite; margin-right:700px ; margin-right:10px ; padding: auto; margin-top:7px; font-size: 25px;">
+           Smart Travel 
+           <br> 
+           <br>
+           <br> What are you Looking for ??
+         </p>
+        </section>
+      <br>
+      <br>
+      <center>
+        <a style="margin:100px;color: seashell; background-color: #009688; border-radius: 5px; border-color: whitesmoke; border:dotted;padding: 5px ; height:40px; align-items: center; font-size: 28px;">Welcome {{user.username}}</a>
+        </center>
       <div class="links-con">
-        <a target="_blank" class="nav new">Welcome {{user.username}}</a>
-        <form action="/myorders" method="GET" class="nav" ><input value="My Orders" type="submit">
-        </input></form>
-        <form action="/login" method="GET" class="nav"><input value="Home" type="submit">
-        </input></form>
-        <form action="/profile" method="GET" class="nav"><input value="Profile" type="submit">
-        </input></form>
-        <form action="/logout" method="GET" class="nav"><input value="Logout" type="submit">
-        </input></form>
+        <button class="nav new" style="color: seashell; background-color: #009688; border-radius: 5px; border-color: whitesmoke; border:solid; height:40px; margin-top: 0px;">
+          <a href="myorders" style="color: whitesmoke;">My Orders</a>
+        </button>
+        <button class="nav new" style="color: seashell; background-color: #009688; border-radius: 5px; border-color: whitesmoke; border:solid; height:40px; margin-top: 0px;">
+          <a href="login" style="color: whitesmoke;">Home</a>
+        </button>
+        <button class="nav new" style="color: seashell; background-color: #009688; border-radius: 5px; border-color: whitesmoke; border:solid; height:40px; margin-top: 0px;">
+          <a href="profile" style="color: whitesmoke;">Profile</a>
+        </button>
+        <button class="nav new" style="color: seashell; background-color: #009688; border-radius: 5px; border-color: whitesmoke; border:solid; height:40px; margin-top: 0px;">
+          <a href="logout" style="color: whitesmoke;">Logout</a>
+        </button>
       </div>
       <main>
         <!-- <aside class="left-side hidden hideNav"> -->
          </ul>
         </aside>
-        <aside class="right-side">
-            <section class="info">
-               <p>
+            <!-- <section class="info">
+              <img src="/static/images/logo.jpg" alt="logo" style="width: 40px; height: 40px; margin-top: 3px; padding: auto;"/>
+               <p style="font-family:Cursive; color: floralwhite; margin-right:700px ; margin-right:10px ; padding: auto; margin-top:7px; font-size: 25px;">
                  Smart Travel 
                  <br> 
                  <br>
-                 <br> What are you Looking for ??!
+                 <br> What are you Looking for ??
                </p>
-              </section>
+              </section> -->
+            <aside class="right-side">
               <section class="cards-wrapper">
                 <div class="card-grid-space">
                   <div class="num">01</div>
