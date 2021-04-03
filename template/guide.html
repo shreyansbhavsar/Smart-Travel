@@ -48,6 +48,8 @@
 
     .logo {
       flex: 1;
+      font:caption;
+      font-size: 28px;
     }
 
     .cart-container {
@@ -338,7 +340,8 @@
   <body>
     <!-- NAVBAR -->
     <div class="navbar">
-      <div class="logo">Smart Travel</div>
+      <img src="/static/images/logo.jpg" alt="logo" style="width: 40px; margin-top: 11px; padding: auto; margin-bottom: 11px;margin-right: 11px;"/>
+      <div class="logo" style="">Smart Travel</div>
       <i style="font-size:24px" class="fa">&#xf0b0;</i>
       <center>
         <select style="margin: 10px; text-align: center;" id='locationfilter' onchange="sort_location()">

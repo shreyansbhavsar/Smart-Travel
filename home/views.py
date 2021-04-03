@@ -21,11 +21,16 @@ from django.core.mail import send_mail
 def index(request):
     return render(request, 'base.html')
 
+@login_required
+@t_only
 def reviews(request,id):
     if request.method == 'GET':
         data = CustomUser.objects.get(id=id)
         return render(request, 'reviews.html')
 
+@login_required
+@p_only
+@g_only
 def addphoto(request, id):
     data = CustomUser.objects.get(id=id)
     if request.method == 'GET':
@@ -50,10 +55,13 @@ def addphoto(request, id):
             return redirect('g_dashboard')
 
 
+@login_required
+@t_only
 def myorders(request):
     lemail = request.user.email
     order = Order_table.objects.filter(email=lemail)
     return render(request, 'myorders.html', {'order': order})
+
 
 
 def sendmail(email, subject, message):
@@ -293,6 +301,8 @@ def guide(request,filter = 0,location=""):
     return render(request, 'guide.html', {'g': g,'select' : filter,'location' : location})
 
 
+@login_required
+@t_only
 def review(request,email = None,rating = None):
 
     vals = {"Satisfied":5,"Neutral" : 3, "Unhappy" : 1}
