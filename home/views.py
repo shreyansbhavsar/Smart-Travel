@@ -29,10 +29,11 @@ def reviews(request,id):
         return render(request, 'reviews.html')
 
 @login_required
-@p_only
-@g_only
+# @p_only
+# @g_only
 def addphoto(request, id):
     data = CustomUser.objects.get(id=id)
+    # print(data)
     if request.method == 'GET':
         return render(request, 'addphoto.html', {'user': data})
     else:
@@ -49,6 +50,7 @@ def addphoto(request, id):
         obj.img = img
 
         obj.save()
+        # print()
         if request.user.category == 'Photographer':
             return redirect('pdashboard')
         else:
@@ -252,14 +254,14 @@ def dashboard(request):
 
 
 @ login_required
-@ g_only
+# @ g_only
 def g_dashboard(request):
     u = Image_table.objects.filter(uid=request.user.id)
     return render(request, 'g_dashboard.html', {'u': u})
 
 
 @ login_required
-@ p_only
+# @ p_only
 def pdashboard(request):
     u = Image_table.objects.filter(uid=request.user.id)
 
@@ -272,8 +274,10 @@ def photographer(request,filter=0,location=""):
     # pcount = CustomUser.objects.filter(category='Photographer').count()
     x = CustomUser.objects.filter(category='Photographer').all()
     if location != "":
-            x = CustomUser.objects.filter(category='Guide',location = location)
+            x = CustomUser.objects.filter(category='Photographer',location = location)
+    print(filter)
     if filter != 0:
+        print(filter)
         if filter == 1:
             x = x.order_by('charges')[:]
         if filter == 2:
